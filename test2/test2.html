@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+<title>Nested document.write()</title>
+</head>
+<body>
+<script>
+(function(s) {
+//write your code here to parse s and console- Remember - your solution must work for n level of document.write()
+	var str, scriptElement = document.createElement('script');
+	str = s.replace(/["']/g, '"');
+	str = str.replace(/"<script>document.write/g, "");
+	str = str.replace(/;<\/script\>"/g, "");
+	scriptElement.innerHTML = str;
+	document.body.appendChild(scriptElement);
+})("document.write('<script>document.write(\"<script>document.write('<script>document.write(\"Hello World\");<\/script>');<\/script>\");<\/script>')");
+</script>
+</body>
+</html>
